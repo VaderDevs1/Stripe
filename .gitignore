@@ -1,0 +1,9 @@
+node_modules/
+.env
+server/node/
+server/go/
+server/java/
+server/php/
+server/python/
+server/ruby/
+*.exe
