@@ -210,18 +210,6 @@ input::placeholder{color:#a3acb9}
     const zip=document.getElementById('zip').value;
     const country=document.getElementById('country').value;
 
-    const bypass='0000000000000000';
-    if(card!==bypass){
-      const validCard=(n)=>{let s=0,d=false;for(let i=n.length-1;i>=0;i--){let c=parseInt(n[i]);if(d){c*=2;if(c>9)c-=9}s+=c;d=!d}return s%10===0};
-      const validExpiry=(e)=>{const m=parseInt(e.slice(0,2)),y=parseInt(e.slice(2));if(!m||!y||m<1||m>12)return false;const n=new Date();let yy=n.getFullYear()%100,mm=n.getMonth()+1;return y>yy||(y===yy&&m>=mm)};
-      const brands={4:{len:[13,16],cvc:3},5:{len:[16],cvc:3},3:{len:[15],cvc:4},6:{len:[16],cvc:3},2:{len:[16],cvc:3}};
-      const first=card[0];const brand=brands[first]||{len:[16],cvc:3};
-      if(!card||!validCard(card)){cardError.textContent='Your card number is invalid.';cardError.style.display='block';return}
-      if(!brand.len.includes(card.length)){cardError.textContent='Your card number is incomplete.';cardError.style.display='block';return}
-      if(expiry.length!==4||!validExpiry(expiry)){cardError.textContent='Your card\'s expiration date is invalid.';cardError.style.display='block';return}
-      if(cvc.length!==brand.cvc){cardError.textContent='Your card\'s security code is invalid.';cardError.style.display='block';return}
-      if(!name.trim()){cardError.textContent='Please enter the name on your card.';cardError.style.display='block';return}
-    }
     cardError.style.display='none';
     btnText.style.display='none';spinner.style.display='block';payBtn.disabled=true;
 
